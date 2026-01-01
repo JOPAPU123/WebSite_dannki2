@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Данна</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+  background:#000;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* --- Fullscreen sections removed, tight layout --- */
+section { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; position:relative; width:100%; padding:2rem 0; }
+
+/* --- Floating Hearts animation --- */
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(0); opacity:0; }
+  10% { opacity:1; scale:1; }
+  50% { transform: translateY(-400px) scale(1) rotate(10deg); opacity:1; }
+  75% { transform:rotate(-10deg); }
+  100% { transform: translateY(-800px) scale(0.5); opacity:0; }
+}
+.floating-heart { position:absolute; bottom:-50px; animation-name:floatHeart; animation-timing-function:ease-out; animation-iteration-count:infinite; }
+
+/* --- Sparkles --- */
+@keyframes sparkleAnim {0%,100%{opacity:0; transform:scale(0) rotate(0deg);} 50%{opacity:1; transform:scale(1) rotate(180deg);} }
+.sparkle { position:absolute; animation-name:sparkleAnim; animation-duration:2s; animation-iteration-count:infinite; animation-timing-function:ease-in-out; }
+
+/* --- Central Heart --- */
+@keyframes heartbeat {0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+.heart-center { animation:heartbeat 1.5s infinite; }
+
+/* --- Neon text --- */
+.neon-text { background: linear-gradient(90deg,#f472b6,#f43f5e,#f472b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 20px rgba(236,72,153,0.5); }
+
+/* --- Mini hearts inside compliments --- */
+@keyframes floatMiniHeart {0%{transform:translateY(0) scale(0); opacity:0; rotate:0deg;} 10%{opacity:1; scale:1;} 50%{transform:translateY(-50px) scale(1) rotate(10deg); opacity:1;} 75%{rotate:-10deg;} 100%{transform:translateY(-100px) scale(0.5); opacity:0;} }
+.mini-heart { position:absolute; bottom:0; width:16px; height:16px; animation-name:floatMiniHeart; animation-timing-function:ease-out; animation-iteration-count:infinite; }
+
+/* --- Tight spacing --- */
+#gallery { display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap; justify-content:center; }
+#compliments > div { margin-bottom:0.5rem; width:90%; max-width:500px; }
+
+/* --- Bottom wish --- */
+#wish { margin-top:1rem; font-size:2rem; font-weight:bold; text-align:center; color:#ff77aa; text-shadow:0 0 20px #ff77aa; }
+</style>
+</head>
+<body>
+
+<!-- Floating Hearts & Sparkles (full site) -->
+<div id="hearts"></div>
+<div id="sparkles"></div>
+
+<!-- Main Heart & Name -->
+<section>
+  <div class="heart-center mb-2">
+    <svg class="w-32 h-32 text-rose-400 fill-rose-400 drop-shadow-lg" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </div>
+  <h1 class="text-6xl font-light tracking-wider mb-2 neon-text">Данна</h1>
+  <p class="text-lg text-pink-300/90 font-light tracking-wide mb-4 text-center">Ты — мой лучший закарпут</p>
+</section>
+
+<!-- Photo Gallery -->
+<section>
+  <div id="gallery">
+    <div class="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-pink-500/30 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6956d51984b4bfcd643bc78f/3b3e0a6c2_1.jpg" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-pink-500/30 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6956d51984b4bfcd643bc78f/922b5acd1_2.jpg" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-pink-500/30 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6956d51984b4bfcd643bc78f/6e3efa0a4_3.jpg" class="w-full h-full object-cover" />
+    </div>
+  </div>
+</section>
+
+<!-- Compliments -->
+<section>
+  <div id="compliments">
+    <div class="relative bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-pink-500/20 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <div id="hearts-bottom"></div>
+      <p class="text-xl font-semibold neon-text mb-1 text-center">Невероятно красивая</p>
+      <p class="text-base text-center text-pink-100/70">Ты самая стильная и уникальная девушка на свете</p>
+    </div>
+    <div class="relative bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-pink-500/20 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <div id="hearts-bottom2"></div>
+      <p class="text-xl font-semibold neon-text mb-1 text-center">Яркая личность</p>
+      <p class="text-base text-center text-pink-100/70">С тобой жизнь становится ярче и интереснее</p>
+    </div>
+    <div class="relative bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-pink-500/20 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <div id="hearts-bottom3"></div>
+      <p class="text-xl font-semibold neon-text mb-1 text-center">Особенная</p>
+      <p class="text-base text-center text-pink-100/70">Таких как ты больше нет — ты одна на миллион</p>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom wish -->
+<section>
+  <div id="wish">Ты красивая 💖</div>
+</section>
+
+<script>
+// --- Floating Hearts full site ---
+const heartsContainer = document.getElementById('hearts');
+for(let i=0;i<30;i++){
+  const heart = document.createElement('div');
+  heart.className='floating-heart text-pink-400/60';
+  heart.style.left=Math.random()*100+'%';
+  const size=16+Math.random()*24;
+  heart.style.width=size+'px';
+  heart.style.height=size+'px';
+  heart.style.animationDuration=(6000+Math.random()*6000)+'ms';
+  heart.style.animationDelay=(Math.random()*4000)+'ms';
+  heart.innerHTML=`<svg viewBox="0 0 24 24" class="w-full h-full fill-current"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+  heartsContainer.appendChild(heart);
+}
+
+// --- Sparkles full site ---
+const sparklesContainer = document.getElementById('sparkles');
+for(let i=0;i<20;i++){
+  const sparkle = document.createElement('div');
+  sparkle.className='sparkle';
+  sparkle.style.left=Math.random()*100+'%';
+  sparkle.style.top=Math.random()*100+'%';
+  sparkle.style.animationDelay=Math.random()*2000+'ms';
+  sparkle.innerHTML=`<svg viewBox="0 0 24 24" class="w-4 h-4 text-yellow-300 fill-yellow-300"><path d="M12 2l2.09 6.26L20 9.27l-5 3.73 1.18 6.87L12 17.77 7.82 20.87 9 13l-5-3.73 5.91-.01L12 2z"/></svg>`;
+  sparklesContainer.appendChild(sparkle);
+}
+
+// --- Mini hearts in compliments ---
+function addMiniHearts(containerId){
+  const container=document.getElementById(containerId);
+  for(let i=0;i<6;i++){
+    const h=document.createElement('div');
+    h.className='mini-heart text-pink-400/70';
+    h.style.left=Math.random()*90+'%';
+    h.style.animationDuration=(3000+Math.random()*2000)+'ms';
+    h.style.animationDelay=Math.random()*2000+'ms';
+    h.innerHTML=`<svg viewBox="0 0 24 24" class="w-full h-full fill-current"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+    container.appendChild(h);
+  }
+}
+addMiniHearts('hearts-bottom');
+addMiniHearts('hearts-bottom2');
+addMiniHearts('hearts-bottom3');
+</script>
+</body>
+</html>
